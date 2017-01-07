@@ -23,4 +23,4 @@ Run:
 
     ./twittersearch
 
-Filtered tweets will be displayed on terminal screen. Take a look at screenshot for reference.
+Filtered tweets will be displayed on terminal screen. Output is attached for reference.
