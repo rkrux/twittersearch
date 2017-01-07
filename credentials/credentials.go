@@ -35,11 +35,11 @@ func (crdnls *Credentials) read() error {
 		fileData []byte
 		err      error
 	)
-	if fileData, err = ioutil.ReadFile(constants.CREDENTIALS_FILE); err != nil {
-		return fmt.Errorf("%v: %v", constants.CREDENTIALS_READ_ERROR, err.Error())
+	if fileData, err = ioutil.ReadFile(constants.CredentialsFile); err != nil {
+		return fmt.Errorf("%v: %v", constants.CredentialsReadError, err.Error())
 	}
 	if err = json.Unmarshal(fileData, crdnls); err != nil {
-		return fmt.Errorf("%v: %v", constants.CREDENTIALS_READ_ERROR, err.Error())
+		return fmt.Errorf("%v: %v", constants.CredentialsReadError, err.Error())
 	}
 	return nil
 }
@@ -48,8 +48,8 @@ func (crdnls *Credentials) read() error {
 func (crdnls *Credentials) validate() error {
 	if crdnls == nil || crdnls.ConsumerKey == "" || crdnls.ConsumerSecret == "" ||
 		crdnls.OauthAccessToken == "" || crdnls.OauthAccessTokenSecret == "" {
-		return fmt.Errorf("%v: %v", constants.CREDENTIALS_VALIDATE_ERROR,
-			constants.INCOMPLETE_CREDENTIALS)
+		return fmt.Errorf("%v: %v", constants.CredentialsValidateError,
+			constants.IncompleteCredentials)
 	}
 	return nil
 }

@@ -28,9 +28,9 @@ func (tClient *TwitterClient) Load(crdnls credentials.Credentials) {
 	tClient.User = oauth1a.NewAuthorizedConfig(crdnls.OauthAccessToken,
 		crdnls.OauthAccessTokenSecret)
 	tClient.OAuth = &oauth1a.Service{
-		RequestURL:   constants.REQUEST_TOKEN,
-		AuthorizeURL: constants.AUTHORIZE,
-		AccessURL:    constants.ACCESS_TOKEN,
+		RequestURL:   constants.RequestToken,
+		AuthorizeURL: constants.Authorize,
+		AccessURL:    constants.AccessToken,
 		ClientConfig: &oauth1a.ClientConfig{
 			ConsumerKey:    crdnls.ConsumerKey,
 			ConsumerSecret: crdnls.ConsumerSecret,
@@ -47,7 +47,7 @@ func (tClient *TwitterClient) SendRequest(tReq *request.TwitterRequest) (
 	tClient.OAuth.Sign(tReq.Request, tClient.User)
 	tResp := response.TwitterResponse{}
 	if httpResponse, err := tClient.HTTPClient.Do(tReq.Request); err != nil {
-		return tResp, fmt.Errorf("%v: %v", constants.SEND_REQUEST_ERROR, err.Error())
+		return tResp, fmt.Errorf("%v: %v", constants.SendRequestError, err.Error())
 	} else {
 		tResp.Response = httpResponse
 		return tResp, nil

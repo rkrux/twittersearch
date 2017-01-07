@@ -10,8 +10,8 @@ import (
 
 // Query parameters used in request
 var queryParams = map[string]string{
-	constants.SEARCH_KEY: constants.SEARCH_VALUE,
-	constants.COUNT_KEY:  constants.COUNT_VALUE,
+	constants.SearchKey: constants.SearchValue,
+	constants.CountKey:  constants.CountValue,
 }
 
 type TwitterRequest struct {
@@ -28,10 +28,10 @@ func (tReq *TwitterRequest) Load() error {
 	for key, value := range queryParams {
 		query.Set(key, value)
 	}
-	apiUrl := fmt.Sprintf("%v%v", constants.BASE_REQUEST_URL, query.Encode())
+	apiURL := fmt.Sprintf("%v%v", constants.BaseRequestUrl, query.Encode())
 
-	if httpRequest, err := http.NewRequest(constants.REQUEST_METHOD, apiUrl, nil); err != nil {
-		return fmt.Errorf("%v: %v", constants.CREATE_REQUEST_ERROR, err.Error())
+	if httpRequest, err := http.NewRequest(constants.RequestMethod, apiURL, nil); err != nil {
+		return fmt.Errorf("%v: %v", constants.CreateRequestError, err.Error())
 	} else {
 		tReq.Request = httpRequest
 	}

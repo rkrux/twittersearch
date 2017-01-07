@@ -37,19 +37,19 @@ func (tResp TwitterResponse) ParseBody() (TwitterResponseBody, error) {
 	respBody := TwitterResponseBody{}
 	if buffer, err := ioutil.ReadAll(tResp.Response.Body); err == nil {
 		switch tResp.Response.StatusCode {
-		case constants.STATUS_OK:
+		case constants.StatusOk:
 			if err = json.Unmarshal(buffer, &respBody); err != nil {
 				return respBody,
-					fmt.Errorf("%v: %v", constants.PARSE_RESPONSE_ERROR, err.Error())
+					fmt.Errorf("%v: %v", constants.ParseResponseError, err.Error())
 			}
 			return respBody, nil
 		default:
 			return respBody,
 				fmt.Errorf("%v: Status Code %v",
-					constants.PARSE_RESPONSE_ERROR, tResp.Response.StatusCode)
+					constants.ParseResponseError, tResp.Response.StatusCode)
 		}
 	} else {
-		return respBody, fmt.Errorf("%v: %v", constants.PARSE_RESPONSE_ERROR, err.Error())
+		return respBody, fmt.Errorf("%v: %v", constants.ParseResponseError, err.Error())
 	}
 }
 
