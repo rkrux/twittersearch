@@ -14,9 +14,9 @@ import (
 
 // TwitterClient to connect with API
 type TwitterClient struct {
-	OAuth      *oauth1a.Service
-	User       *oauth1a.UserConfig
-	HTTPClient *http.Client
+	oAuth      *oauth1a.Service
+	user       *oauth1a.UserConfig
+	httpClient *http.Client
 }
 
 func New() *TwitterClient {
@@ -25,9 +25,9 @@ func New() *TwitterClient {
 
 // Load user and API credentials in Twitter client using oauth1a library
 func (tClient *TwitterClient) Load(crdnls credentials.Credentials) {
-	tClient.User = oauth1a.NewAuthorizedConfig(crdnls.OauthAccessToken,
+	tClient.user = oauth1a.NewAuthorizedConfig(crdnls.OauthAccessToken,
 		crdnls.OauthAccessTokenSecret)
-	tClient.OAuth = &oauth1a.Service{
+	tClient.oAuth = &oauth1a.Service{
 		RequestURL:   constants.RequestToken,
 		AuthorizeURL: constants.Authorize,
 		AccessURL:    constants.AccessToken,
@@ -37,16 +37,16 @@ func (tClient *TwitterClient) Load(crdnls credentials.Credentials) {
 		},
 		Signer: new(oauth1a.HmacSha1Signer),
 	}
-	tClient.HTTPClient = new(http.Client)
+	tClient.httpClient = new(http.Client)
 }
 
 // Sign and send request to Twitter API and return API response
 func (tClient *TwitterClient) SendRequest(tReq *request.TwitterRequest) (
 	response.TwitterResponse, error) {
 
-	tClient.OAuth.Sign(tReq.Request, tClient.User)
+	tClient.oAuth.Sign(tReq.Request, tClient.user)
 	tResp := response.TwitterResponse{}
-	if httpResponse, err := tClient.HTTPClient.Do(tReq.Request); err != nil {
+	if httpResponse, err := tClient.httpClient.Do(tReq.Request); err != nil {
 		return tResp, fmt.Errorf("%v: %v", constants.SendRequestError, err.Error())
 	} else {
 		tResp.Response = httpResponse

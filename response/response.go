@@ -9,22 +9,22 @@ import (
 	"github.com/rushilkapoor/twittersearch/constants"
 )
 
-type TwitterUser struct {
+type twitterUser struct {
 	Name          string `json:"name"`
 	ScreenName    string `json:"screen_name"`
 	Location      string `json:"location"`
 	FollwersCount int    `json:"followers_count"`
 }
 
-type Tweet struct {
+type tweet struct {
 	Text         string      `json:"text"`
 	RetweetCount int         `json:"retweet_count"`
 	CreatedAt    string      `json:"created_at"`
-	User         TwitterUser `json:"user"`
+	User         twitterUser `json:"user"`
 }
 
 type TwitterResponseBody struct {
-	ResponseBody []Tweet `json:"statuses"`
+	ResponseBody []tweet `json:"statuses"`
 }
 
 type TwitterResponse struct {
