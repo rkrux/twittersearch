@@ -11,19 +11,18 @@ import (
 func main() {
 
 	// Load user and API credentials for authentication
-	crdnls := credentials.New()
-	if err := crdnls.Load(); err != nil {
+	crdnls, err := credentials.New()
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	// Get Twitter API client
-	tClient := client.New()
-	tClient.Load(*crdnls)
+	tClient := client.New(*crdnls)
 
 	// Create Twitter API request
-	tReq := request.New()
-	if err := tReq.Load(); err != nil {
+	tReq, err := request.New()
+	if err != nil {
 		fmt.Println(err)
 		return
 	}

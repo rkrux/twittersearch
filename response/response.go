@@ -23,15 +23,17 @@ type tweet struct {
 	User         twitterUser `json:"user"`
 }
 
+// TwitterResponseBody is API response body
 type TwitterResponseBody struct {
 	ResponseBody []tweet `json:"statuses"`
 }
 
+// TwitterResponse is API response
 type TwitterResponse struct {
 	Response *http.Response
 }
 
-// Parse Twitter API response body to retrieve array of tweets
+// ParseBody parses Twitter API response body to retrieve array of tweets
 func (tResp TwitterResponse) ParseBody() (TwitterResponseBody, error) {
 	defer tResp.Response.Body.Close()
 	respBody := TwitterResponseBody{}
@@ -53,7 +55,7 @@ func (tResp TwitterResponse) ParseBody() (TwitterResponseBody, error) {
 	}
 }
 
-// Display tweet details based on re-tweet condition
+// FilterTweets filters and displays tweet details based on re-tweet condition
 func (tRespBody TwitterResponseBody) FilterTweets() {
 	index := 0
 	for _, tweet := range tRespBody.ResponseBody {

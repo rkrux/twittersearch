@@ -19,12 +19,9 @@ type TwitterClient struct {
 	httpClient *http.Client
 }
 
-func New() *TwitterClient {
-	return new(TwitterClient)
-}
-
-// Load user and API credentials in Twitter client using oauth1a library
-func (tClient *TwitterClient) Load(crdnls credentials.Credentials) {
+// New loads user and API credentials in Twitter client using oauth1a library
+func New(crdnls credentials.Credentials) *TwitterClient {
+	tClient := new(TwitterClient)
 	tClient.user = oauth1a.NewAuthorizedConfig(crdnls.OauthAccessToken,
 		crdnls.OauthAccessTokenSecret)
 	tClient.oAuth = &oauth1a.Service{
@@ -38,18 +35,23 @@ func (tClient *TwitterClient) Load(crdnls credentials.Credentials) {
 		Signer: new(oauth1a.HmacSha1Signer),
 	}
 	tClient.httpClient = new(http.Client)
+	return tClient
 }
 
-// Sign and send request to Twitter API and return API response
+// SendRequest sends oAuth signed request to Twitter API and return API response
 func (tClient *TwitterClient) SendRequest(tReq *request.TwitterRequest) (
 	response.TwitterResponse, error) {
 
+	var (
+		tResp        response.TwitterResponse
+		httpResponse *http.Response
+		err          error
+	)
+
 	tClient.oAuth.Sign(tReq.Request, tClient.user)
-	tResp := response.TwitterResponse{}
-	if httpResponse, err := tClient.httpClient.Do(tReq.Request); err != nil {
+	if httpResponse, err = tClient.httpClient.Do(tReq.Request); err != nil {
 		return tResp, fmt.Errorf("%v: %v", constants.SendRequestError, err.Error())
-	} else {
-		tResp.Response = httpResponse
-		return tResp, nil
 	}
+	tResp.Response = httpResponse
+	return tResp, nil
 }

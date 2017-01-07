@@ -8,6 +8,7 @@ import (
 	"github.com/rushilkapoor/twittersearch/constants"
 )
 
+// Credentials to be used in Twitter Client
 type Credentials struct {
 	ConsumerKey            string `json:"consumerKey"`
 	ConsumerSecret         string `json:"consumerSecret"`
@@ -15,18 +16,16 @@ type Credentials struct {
 	OauthAccessTokenSecret string `json:"oauthAccessTokenSecret"`
 }
 
-func New() *Credentials {
-	return new(Credentials)
-}
-
-func (crdnls *Credentials) Load() error {
+// New create validated credentials struct
+func New() (*Credentials, error) {
+	crdnls := new(Credentials)
 	if err := crdnls.read(); err != nil {
-		return err
+		return crdnls, err
 	}
 	if err := crdnls.validate(); err != nil {
-		return err
+		return crdnls, err
 	}
-	return nil
+	return crdnls, nil
 }
 
 // Read credentials from JSON file and load them in struct
