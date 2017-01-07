@@ -3,14 +3,16 @@ package client
 import (
 	"fmt"
 	"net/http"
-	"twittersearch/constants"
-	"twittersearch/credentials"
-	"twittersearch/request"
-	"twittersearch/response"
 
-	"twittersearch/_libs/github.com/kurrik/oauth1a"
+	"github.com/rushilkapoor/twittersearch/constants"
+	"github.com/rushilkapoor/twittersearch/credentials"
+	"github.com/rushilkapoor/twittersearch/request"
+	"github.com/rushilkapoor/twittersearch/response"
+
+	"github.com/rushilkapoor/twittersearch/_libs/github.com/kurrik/oauth1a"
 )
 
+// TwitterClient to connect with API
 type TwitterClient struct {
 	OAuth      *oauth1a.Service
 	User       *oauth1a.UserConfig

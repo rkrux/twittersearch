@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"twittersearch/client"
-	"twittersearch/credentials"
-	"twittersearch/request"
+
+	"github.com/rushilkapoor/twittersearch/client"
+	"github.com/rushilkapoor/twittersearch/credentials"
+	"github.com/rushilkapoor/twittersearch/request"
 )
 
 func main() {

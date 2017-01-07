@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"twittersearch/constants"
+
+	"github.com/rushilkapoor/twittersearch/constants"
 )
 
 type Credentials struct {

@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"twittersearch/constants"
+
+	"github.com/rushilkapoor/twittersearch/constants"
 )
 
 // Query parameters used in request

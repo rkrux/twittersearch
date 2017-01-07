@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"twittersearch/constants"
+
+	"github.com/rushilkapoor/twittersearch/constants"
 )
 
 type TwitterUser struct {
