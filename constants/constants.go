@@ -2,7 +2,7 @@ package constants
 
 const (
 	// FILES
-	CredentialsFile = "file.json"
+	CredentialsFile = "credentials.json"
 
 	// ERRORS
 	CredentialsReadError     = "Error reading credentials"
