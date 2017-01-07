@@ -20,17 +20,17 @@ func New() *Credentials {
 }
 
 func (crdnls *Credentials) Load() error {
-	if err := crdnls.Read(); err != nil {
+	if err := crdnls.read(); err != nil {
 		return err
 	}
-	if err := crdnls.Validate(); err != nil {
+	if err := crdnls.validate(); err != nil {
 		return err
 	}
 	return nil
 }
 
 // Read credentials from JSON file and load them in struct
-func (crdnls *Credentials) Read() error {
+func (crdnls *Credentials) read() error {
 	var (
 		fileData []byte
 		err      error
@@ -45,7 +45,7 @@ func (crdnls *Credentials) Read() error {
 }
 
 // Validate user and API credentials
-func (crdnls *Credentials) Validate() error {
+func (crdnls *Credentials) validate() error {
 	if crdnls == nil || crdnls.ConsumerKey == "" || crdnls.ConsumerSecret == "" ||
 		crdnls.OauthAccessToken == "" || crdnls.OauthAccessTokenSecret == "" {
 		return fmt.Errorf("%v: %v", constants.CREDENTIALS_VALIDATE_ERROR,
