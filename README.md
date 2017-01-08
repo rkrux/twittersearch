@@ -1,4 +1,4 @@
-# Package twittersearch
+# twittersearch
 
 ## Summary
 A client which fetches and displays Tweets that have been re-tweeted at least once and contains the hashtag #custserv
