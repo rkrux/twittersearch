@@ -13,7 +13,8 @@ Run:
     go get github.com/rushilkapoor/twittersearch
 
 ## Using
-It is assumed Golang is installed and GOPATH is setup properly. Insert your Twitter API consumer and access tokens in **credentials.json** file.
+- It is assumed Golang is installed and GOPATH is setup properly.
+- Insert your Twitter API consumer and access tokens in **credentials.json** file.
 
 Run:
 
