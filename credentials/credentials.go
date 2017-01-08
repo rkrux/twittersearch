@@ -16,7 +16,7 @@ type Credentials struct {
 	OauthAccessTokenSecret string `json:"oauthAccessTokenSecret"`
 }
 
-// New create validated credentials struct
+// New validated credentials struct
 func New() (*Credentials, error) {
 	crdnls := new(Credentials)
 	if err := crdnls.read(); err != nil {
