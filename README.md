@@ -10,7 +10,7 @@ A client which fetches and displays Tweets that have been re-tweeted at least on
 ## Installing
 Run:
 
-    go get github.com/rushilkapoor/twittersearch
+    go get github.com/rkrux/twittersearch
 
 ## Using
 - It is assumed Golang is installed and GOPATH is setup properly.
@@ -18,7 +18,7 @@ Run:
 
 Run:
 
-    cd $GOPATH/src/github.com/rushilkapoor/twittersearch/
+    cd $GOPATH/src/github.com/rkrux/twittersearch/
 
     go build
 
